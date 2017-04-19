@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+using namespace std;
 typedef vector< vector<int> > vvi;
 typedef vector< vector<ll> > vvl;
 typedef pair<int, int> pii;
