@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
+struct mp{
+        int x, y;
+};
 typedef vector< vector<int> > vvi;
 typedef vector< vector<ll> > vvl;
 typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
-struct mp{
-        int x, y;
-};
 int Orient(mp p, mp q, mp r){
     int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
     if (val == 0)
