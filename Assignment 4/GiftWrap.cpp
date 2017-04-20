@@ -6,72 +6,43 @@ typedef pair<int, int> pii;
 typedef pair<long long, long long> pll;
 typedef vector<int> vi;
 typedef vector<ll> vll;
- 
-class mypoint {
-    public:
+struct mp{
         int x, y;
 };
-
-int Orient(mypoint p, mypoint q, mypoint r)
-{
+int Orient(mp p, mp q, mp r){
     int val = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
- 
     if (val == 0)
         return 0;
     return (val > 0) ? 1 : 2;
 }
-
-void convexHull(mypoint ConvexArray[], int n)
-{
+void hull(mp array[], int n){
     if (n < 3)
         return;
- 
     int nextPoint[n];
     for (int i = 0; i < n; i++)
         nextPoint[i] = -1;
-
     int l = 0;
     for (int i = 1; i < n; i++)
-        if (ConvexArray[i].x < ConvexArray[l].x)
+        if (array[i].x < array[l].x)
             l = i;
-
     int p = l, q;
-    do
-    {
+    do{
         q = (p + 1) % n;
         for (int i = 0; i < n; i++)
-            if (Orient(ConvexArray[p], ConvexArray[i], ConvexArray[q]) == 2)
+            if (Orient(array[p], array[i], array[q]) == 2)
                 q = i;
         nextPoint[p] = q;
         p = q;
-    } while (p != l);
-
-    for (int i = 0; i < n; i++)
-    {
+    }while (p != l);
+    for (int i = 0; i < n; i++){
         if (nextPoint[i] != -1)
-            cout << "(" << ConvexArray[i].x << ", " << ConvexArray[i].y << ")\n";
+            cout << "(" << array[i].x << ", " << array[i].y << ")\n";
     }
 }
-
-int main()
-{
+int main(){
     int n;cin>>n;
-    mypoint ConvexArray[n];
-    for(int i=0;i<n;i++) cin>>ConvexArray[i].x>>ConvexArray[i].y;
-    convexHull(ConvexArray, n);
+    ,p array[n];
+    for(int i=0;i<n;i++) cin>>array[i].x>>array[i].y;
+    hull(array, n);
     return 0;
-}   
-/*
-Input:
-6
-5 6
-1 1
-0 4
-2 -1 
--5 -4
-1 2
-Output:
-(5, 6)
-(0, 4)
-(2, -1)
-(-5, -4)
+}
